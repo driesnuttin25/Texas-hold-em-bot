@@ -9,6 +9,7 @@ CONFIG -= qt
 SOURCES += main.cpp \
 	bart.cpp \
 	deck.cpp \
+	dries.cpp \
 	game.cpp \
 	hand.cpp \
 	king_of_aces.cpp \
@@ -20,6 +21,7 @@ HEADERS += \
 	bart.h \
 	card.h \
 	deck.h \
+	dries.h \
 	game.h \
 	hand.h \
 	king_of_aces.h \

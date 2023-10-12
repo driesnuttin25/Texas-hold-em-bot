@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 
+#include "dries.h"
 #include "shootout.h"
 #include "tournament.h"
 #include "king_of_aces.h"
@@ -17,7 +18,8 @@ int main( int argumentCount, char * argumentVector[] )
 	{
 		tour.registerPlayer( new PXL2022::KingOfAces( i ), PXL_2022 );
 		tour.registerPlayer( new PXL2022::Bart( i ), PXL_2021 );
-	}
+        tour.registerPlayer( new PXL2022::Dries( i ), PXL_2022);
+    }
 
 	if( argumentCount > 1 && ( strcmp( argumentVector[argumentCount-1], "stats" ) == 0 ) )
 	{

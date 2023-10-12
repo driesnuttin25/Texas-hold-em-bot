@@ -49,6 +49,8 @@ int KingOfAces::willYouRaise( unsigned int totalBet )
 		return 0;
 	}
 	else
+
+
 	{ //on river
 		return 0;
 	}
@@ -56,6 +58,6 @@ int KingOfAces::willYouRaise( unsigned int totalBet )
 
 void KingOfAces::talkSmack()
 {
-	std::cout << "You are all losers !!!" << 42 << std::endl;
+    std::cout << "I love you all very much !!!" << 42 << std::endl;
 }
 }
