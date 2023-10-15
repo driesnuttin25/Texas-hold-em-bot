@@ -1,6 +1,6 @@
 #include "dries.h"
-#include <cstdlib> 
-#include <cmath> 
+#include <cstdlib> // for rand()
+#include <cmath> // for abs()
 #include "game.h"
 
 namespace PXL2023
@@ -17,10 +17,10 @@ int Dries::willYouRaise(unsigned int totalBet)
     unsigned int blind = getGame()->getBlind();
     unsigned int myChips = getChips();
 
-    // Improved Randomizer
+    // Randomizer that will allow for a more dynamic game, pretty much. I'm just hoping this will create a more dynamic game
     int randomFactor = rand() % 20;
 
-    // Basic fold conditions - don't waste chips
+    // Don't waste chips, gotta save em if they're running low hehe
     if (myChips < blind * 2)
     {
         return -1;
@@ -32,7 +32,7 @@ int Dries::willYouRaise(unsigned int totalBet)
         auto secondCard = getHand().getSecondCard();
 
         unsigned int baseRaise = blind * 4;
-
+        // Generally looking for the best type of cards to keep playing and raise more or less aggresively
         if (firstCard->getRank() == secondCard->getRank() && firstCard->getRank() >= 10)
         {
             return baseRaise + blind;
@@ -52,7 +52,7 @@ int Dries::willYouRaise(unsigned int totalBet)
         {
             return -1;
         }
-
+        // For more unpredictability, raise if bot has enough chips
         if (randomFactor == 0 && myChips >= blind * 5)
         {
             return baseRaise + blind * 2;
@@ -92,17 +92,14 @@ int Dries::willYouRaise(unsigned int totalBet)
 
         switch (myHandRank.getCategory())
         {
+        // Depending on how good your hand is, raise more or less
         case ONE_PAIR:
-            // If you have one pair, consider calling or making a small raise
             return (totalBet - myCurrentBet < blind * 4) ? 0 : blind;
         case TWO_PAIR:
-            // If you have two pairs, raise more aggressively
             return blind * 4 - myCurrentBet;
         case THREE_OF_A_KIND:
-            // If you have three of a kind, raise even more aggressively
             return blind * 5 - myCurrentBet;
         case STRAIGHT:
-            // With a straight, make a strong bet
             return blind * 6 - myCurrentBet;
         default:
             // Basic Folding strategy, fold if the bet is too high relative to your chips
@@ -124,17 +121,14 @@ int Dries::willYouRaise(unsigned int totalBet)
 
         switch (myHandRank.getCategory())
         {
+        // Check if there is a good hand, depending on this raise more or less
         case ONE_PAIR:
-            // With one pair, cautiously call if the total bet isn't too high
             return (totalBet - myCurrentBet < blind * 4) ? 0 : -1;
         case TWO_PAIR:
-            // With two pairs, be more aggressive and raise
             return blind * 5 - myCurrentBet;
         case THREE_OF_A_KIND:
-            // With three of a kind, be very aggressive
             return blind * 6 - myCurrentBet;
         case STRAIGHT:
-            // With a straight, make a strong bet to maximize value
             return blind * 7 - myCurrentBet;
         default:
             // Basic Folding strategy, fold if the bet is too high relative to your chips
