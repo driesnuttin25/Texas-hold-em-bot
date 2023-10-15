@@ -1,6 +1,6 @@
 #include "dries.h"
-#include <cstdlib> // for rand()
-#include <cmath> // for abs()
+#include <cstdlib> 
+#include <cmath> 
 #include "game.h"
 
 namespace PXL2023
@@ -146,11 +146,6 @@ int Dries::willYouRaise(unsigned int totalBet)
             return 0;
         }
     }
-
-
-
-
-
 
     return 0;
 }
