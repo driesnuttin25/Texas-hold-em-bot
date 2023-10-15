@@ -3,7 +3,7 @@
 #include "player.h"
 
 
-namespace PXL2022
+namespace PXL2023
 {
 class Dries : public Player
 {
